@@ -47,6 +47,8 @@ services:
     environment:
       OLLAMA_BASE_URL: http://ollama:11434
       LLM_CHAT_MODEL: ${LLM_CHAT_MODEL:-llama3.2:3b}
+      LLM_TEMPERATURE: ${LLM_TEMPERATURE:-0.2}
+      SERVER_PORT: ${SERVER_PORT:-8080}
     ports:
       - "8080:8080"
     depends_on:
@@ -59,7 +61,7 @@ services:
     build:
       context: ./frontend
       args:
-        VITE_API_BASE_URL: http://localhost:8080
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:8080}
     ports:
       - "5173:5173"
     depends_on:

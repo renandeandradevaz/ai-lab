@@ -85,6 +85,7 @@ The durable project context is kept in versioned documentation:
 - [Architecture](docs/architecture.md): runtime topology, boundaries, data flow, and safety model.
 - [Architecture Decisions](docs/decisions.md): important technical choices and their rationale.
 - [Implementation Plan](docs/implementation-plan.md): completed work, pending workstreams, and definition of done.
+- [Configuration Reference](docs/configuration.md): all environment variables, defaults, and ownership.
 
 ## Local Requirements
 
