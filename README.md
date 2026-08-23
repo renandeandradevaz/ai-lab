@@ -30,6 +30,8 @@ The backend is the primary focus. The frontend is intentionally small and exists
 - [x] Full local stack verified with PostgreSQL, Ollama, backend, and frontend containers.
 - [x] Real chat request verified through the backend and local Ollama model.
 
+The current implementation is a bootstrap chat application only. It does not yet have conversation memory, so each request is independent even though previous messages remain visible in the browser. It also does not yet have tools, RAG, an agent loop, or access to fictional order data.
+
 ### Pending
 
 - [ ] Add the database datasource and migration strategy.
@@ -49,7 +51,7 @@ The backend is the primary focus. The frontend is intentionally small and exists
 - [ ] Add OpenTelemetry traces, metrics, token usage, and cost tracking.
 - [ ] Implement caching, context reduction, model routing, and fallback policies.
 - [ ] Expand integration, security, agent behavior, and end-to-end tests.
-- [ ] Complete this README with the final architecture and operational documentation.
+- [x] Document the current implementation and pending work in the README and versioned project docs.
 
 ## Technology Baseline
 
@@ -73,6 +75,8 @@ The application is provider-agnostic by design. Ollama is the initial local prov
 ai-lab/
 ├── backend/       Spring Boot and Spring AI application
 ├── frontend/      Minimal React chat application
+├── docs/           Versioned architecture, decisions, plan, and configuration
+├── ollama-init.sh  Local model initialization script
 ├── docker-compose.yml
 ├── Makefile
 └── .env.example
@@ -111,6 +115,8 @@ OLLAMA_HOST_PORT=11435
 
 The chat and embedding models are intentionally separate. Embeddings will be used by the future RAG implementation.
 
+See [Configuration Reference](docs/configuration.md) for the complete variable list. The current chat model is `llama3.2:3b` and the current embedding model is `nomic-embed-text`.
+
 ## Running Locally
 
 Start the complete Docker environment:
@@ -136,6 +142,18 @@ Stop the environment:
 ```bash
 make down
 ```
+
+## Session Handoff
+
+To resume work in a new development session, read these files in order:
+
+1. `README.md` for the current status and local commands.
+2. `docs/implementation-plan.md` for completed and pending work.
+3. `docs/architecture.md` for system boundaries and planned data flow.
+4. `docs/decisions.md` for the rationale behind the selected stack and provider strategy.
+5. `docs/configuration.md` for environment variables and defaults.
+
+The source code and Docker files are the source of truth for the current implementation. Docker volumes are local runtime state and are not versioned by Git.
 
 ## Chat API
 
