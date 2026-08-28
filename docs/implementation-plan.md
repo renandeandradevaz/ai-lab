@@ -18,6 +18,10 @@ This is one integrated project, not a sequence of public V1, V2, or V14 releases
 - [x] Add persistent PostgreSQL and Ollama volumes.
 - [x] Add automatic Ollama model initialization.
 - [x] Add Makefile and environment template.
+- [x] Configure the PostgreSQL datasource and Flyway migrations.
+- [x] Create the initial operational schema and deterministic seed data.
+- [x] Add JPA entities, repositories, and services for operational read queries.
+- [x] Register read-only order and delivery tools with the chat provider.
 - [x] Verify backend tests with Java 25 in Docker.
 - [x] Verify backend and frontend Docker image builds.
 - [x] Verify the full local stack and a real Ollama chat request.
@@ -33,8 +37,10 @@ This is one integrated project, not a sequence of public V1, V2, or V14 releases
 
 ## Workstream 2: Operational Domain and Tools
 
-- Create deterministic fictional customers, orders, products, inventory, payments, deliveries, tickets, refunds, and address data.
-- Implement read tools and mutation tools.
+- [x] Create deterministic fictional customers, orders, products, and deliveries in PostgreSQL.
+- Create deterministic fictional inventory, payments, tickets, refunds, and address data.
+- [x] Implement read tools for order and delivery queries.
+- Implement mutation tools.
 - Define tool schemas and validation.
 - Add timeout, retry, idempotency, and error policies.
 - Add tool allowlists and execution limits.

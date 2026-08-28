@@ -49,6 +49,9 @@ services:
       LLM_CHAT_MODEL: ${LLM_CHAT_MODEL:-llama3.2:3b}
       LLM_TEMPERATURE: ${LLM_TEMPERATURE:-0.2}
       SERVER_PORT: ${SERVER_PORT:-8080}
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB:-ai_lab}
+      POSTGRES_USER: ${POSTGRES_USER:-ai_lab}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ai_lab}
     ports:
       - "8080:8080"
     depends_on:

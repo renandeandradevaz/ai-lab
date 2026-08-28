@@ -25,16 +25,19 @@ The backend is the primary focus. The frontend is intentionally small and exists
 - [x] Makefile commands for common local operations.
 - [x] Environment variable template and secret exclusion.
 - [x] Basic Spring context test.
+- [x] PostgreSQL datasource, Flyway migrations, and initial operational data schema.
+- [x] JPA entities, repositories, and services for operational read queries.
+- [x] Read-only order and delivery tools integrated with the chat provider.
 - [x] Backend Docker image build verified with Java 25.0.4.
 - [x] Frontend Docker image build verified with Vite and Tailwind.
 - [x] Full local stack verified with PostgreSQL, Ollama, backend, and frontend containers.
 - [x] Real chat request verified through the backend and local Ollama model.
 
-The current implementation is a bootstrap chat application only. It does not yet have conversation memory, so each request is independent even though previous messages remain visible in the browser. It also does not yet have tools, RAG, an agent loop, or access to fictional order data.
+The current implementation is a bootstrap chat application with PostgreSQL-backed read-only order tools. It does not yet have conversation memory, so each request is independent even though previous messages remain visible in the browser. It also does not yet have mutation tools, RAG, or a full agent loop.
 
 ### Pending
 
-- [ ] Add the database datasource and migration strategy.
+- [x] Add the database datasource and migration strategy.
 - [ ] Implement the provider-agnostic model adapter layer.
 - [ ] Add structured output schemas and validation.
 - [ ] Implement operational tools and deterministic fictional business services.
