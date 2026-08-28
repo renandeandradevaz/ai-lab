@@ -1,8 +1,8 @@
 package com.ailab.chat;
 
+import com.ailab.provider.ChatProvider;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
-import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,27 +14,20 @@ import reactor.core.publisher.Flux;
 @RequestMapping("/api/chat")
 public class ChatController {
 
-    private final ChatClient chatClient;
+    private final ChatProvider chatProvider;
 
-    public ChatController(ChatClient.Builder chatClientBuilder) {
-        this.chatClient = chatClientBuilder.build();
+    public ChatController(ChatProvider chatProvider) {
+        this.chatProvider = chatProvider;
     }
 
     @PostMapping
     public ChatResponse chat(@Valid @RequestBody ChatRequest request) {
-        String content = chatClient.prompt()
-                .user(request.message())
-                .call()
-                .content();
-        return new ChatResponse(content == null ? "" : content);
+        return new ChatResponse(chatProvider.chat(request.message()));
     }
 
     @PostMapping(value = "/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<String> stream(@Valid @RequestBody ChatRequest request) {
-        return chatClient.prompt()
-                .user(request.message())
-                .stream()
-                .content();
+        return chatProvider.stream(request.message());
     }
 
     public record ChatRequest(@NotBlank(message = "Message must not be blank") String message) {
