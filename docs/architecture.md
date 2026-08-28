@@ -35,6 +35,7 @@ The backend will be organized around AI capabilities rather than a traditional d
 - Chat interaction.
 - Provider abstraction.
 - Agent orchestration.
+- Reusable skill catalog and workflow instructions.
 - Tool catalog and execution policies.
 - Knowledge ingestion and retrieval.
 - Conversation memory.
@@ -88,3 +89,9 @@ Operational data will be provided by deterministic fictional services and will b
 The agent will not be allowed to execute high-risk mutations directly. Cancellation, refunds, and address changes require a human approval workflow. Read operations may run automatically when authorized.
 
 The final system will enforce tool allowlists, argument validation, least privilege, iteration limits, sensitive data protection, prompt injection defenses, and final response validation.
+
+## Skills
+
+Skills are reusable, bounded workflow definitions for common operational scenarios. A skill may combine intent recognition, approved tools, knowledge retrieval, memory, and human approval, but it does not bypass the underlying execution and security policies.
+
+Initial skill candidates include order status lookup, delayed-order investigation, policy lookup with citations, cancellation requests, and refund requests. Each skill must define its activation conditions, required inputs, permitted tools, validation rules, approval requirements, error behavior, and output contract.

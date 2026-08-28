@@ -97,6 +97,17 @@ This is one integrated project, not a sequence of public V1, V2, or V14 releases
 - Add context reduction and iteration limits.
 - Add model routing and fallback policies.
 
+## Workstream 9: Reusable Skills
+
+- Define the skill contract and skill lifecycle.
+- Create a catalog of bounded skills for common operational workflows.
+- Implement order status lookup and delayed-order investigation skills.
+- Implement policy lookup with citations and insufficient-evidence handling.
+- Implement cancellation and refund request skills with human approval.
+- Define skill activation conditions, required inputs, permitted tools, and output contracts.
+- Ensure skills use the same validation, security, audit, timeout, retry, and idempotency policies as direct agent actions.
+- Add deterministic tests for skill selection, execution boundaries, approval requirements, and failure behavior.
+
 ## Definition of Done
 
-The project is complete when the full agent can answer operational questions using tools and policies, cite its evidence, preserve relevant conversation context, request human approval for high-risk mutations, resist common prompt attacks, expose its lifecycle through telemetry, and pass the documented evaluation suite.
+The project is complete when the full agent can answer operational questions using tools, policies, and reusable skills, cite its evidence, preserve relevant conversation context, request human approval for high-risk mutations, resist common prompt attacks, expose its lifecycle through telemetry, and pass the documented evaluation suite.

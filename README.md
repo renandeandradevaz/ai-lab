@@ -43,6 +43,7 @@ The current implementation is a bootstrap chat application only. It does not yet
 - [ ] Add the fictional policy and support knowledge base.
 - [ ] Add pgvector storage, metadata filtering, citations, and source tracking.
 - [ ] Implement the full agent loop and planning state.
+- [ ] Create reusable copilot skills for common operational workflows.
 - [ ] Add short-term and long-term memory.
 - [ ] Implement the human-in-the-loop approval workflow and audit trail.
 - [ ] Add prompt injection defenses, sensitive data protection, allowlists, and least privilege.
