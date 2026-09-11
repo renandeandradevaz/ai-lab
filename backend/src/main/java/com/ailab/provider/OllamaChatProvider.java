@@ -50,4 +50,46 @@ public class OllamaChatProvider implements ChatProvider {
                 .stream()
                 .content();
     }
+
+    @Override
+    public String summarize(String previousSummary, String conversation) {
+        String prior = previousSummary == null || previousSummary.isBlank()
+                ? "There is no previous summary."
+                : previousSummary;
+        return complete("""
+                Summarize this customer support conversation for future turns.
+                Preserve order IDs, customer IDs, statuses, dates, decisions, unresolved questions, and pending actions.
+                Do not invent facts. Return only the summary in plain text.
+
+                Previous summary:
+                %s
+
+                New conversation messages:
+                %s
+                """.formatted(prior, conversation));
+    }
+
+    @Override
+    public String generateSubject(String previousSubject, String conversation) {
+        return complete("""
+                Create a concise subject for this customer support conversation.
+                Use no more than 80 characters. Return only the subject, without quotes.
+                Do not invent details that are not present in the conversation.
+
+                Previous subject:
+                %s
+
+                Conversation:
+                %s
+                """.formatted(previousSubject, conversation));
+    }
+
+    private String complete(String instruction) {
+        String content = chatClient.prompt()
+                .system("You summarize and label conversations accurately and concisely.")
+                .user(instruction)
+                .call()
+                .content();
+        return content == null ? "" : content.trim();
+    }
 }

@@ -59,7 +59,8 @@ This is one integrated project, not a sequence of public V1, V2, or V14 releases
 - Implement intent understanding and planning.
 - Implement a bounded single-agent loop.
 - Combine tools and RAG for the delayed-order use case.
-- Add short-term conversation memory.
+- [x] Add short-term conversation memory persisted in PostgreSQL.
+- [x] Add simulated users, conversation listing, history recovery, and generated subjects.
 - Add long-term memory and entity references.
 - Add context selection and summarization.
 

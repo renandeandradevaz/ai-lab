@@ -32,8 +32,9 @@ The backend is the primary focus. The frontend is intentionally small and exists
 - [x] Frontend Docker image build verified with Vite and Tailwind.
 - [x] Full local stack verified with PostgreSQL, Ollama, backend, and frontend containers.
 - [x] Real chat request verified through the backend and local Ollama model.
+- [x] PostgreSQL-backed conversation memory with simulated users and generated subjects.
 
-The current implementation is a bootstrap chat application with PostgreSQL-backed read-only order tools. It does not yet have conversation memory, so each request is independent even though previous messages remain visible in the browser. It also does not yet have mutation tools, RAG, or a full agent loop.
+The current implementation is a bootstrap chat application with PostgreSQL-backed conversation memory and read-only order tools. It stores pending messages, periodically compacts them into an LLM-generated summary, and supports three simulated users. It does not yet have mutation tools, RAG, or a full agent loop.
 
 ### Pending
 
@@ -47,7 +48,8 @@ The current implementation is a bootstrap chat application with PostgreSQL-backe
 - [ ] Add pgvector storage, metadata filtering, citations, and source tracking.
 - [ ] Implement the full agent loop and planning state.
 - [ ] Create reusable copilot skills for common operational workflows.
-- [ ] Add short-term and long-term memory.
+- [x] Add short-term PostgreSQL-backed conversation memory and summary compaction.
+- [ ] Add long-term semantic memory.
 - [ ] Implement the human-in-the-loop approval workflow and audit trail.
 - [ ] Add prompt injection defenses, sensitive data protection, allowlists, and least privilege.
 - [ ] Add the MCP server and MCP resources.
@@ -166,7 +168,7 @@ Send a synchronous chat request:
 ```bash
 curl -X POST http://localhost:8080/api/chat \
   -H 'Content-Type: application/json' \
-  -d '{"message":"What can you help me with?"}'
+  -d '{"userId":"user_1","conversationId":"00000000-0000-0000-0000-000000000001","message":"What can you help me with?"}'
 ```
 
 Stream a chat response:
@@ -174,8 +176,17 @@ Stream a chat response:
 ```bash
 curl -N -X POST http://localhost:8080/api/chat/stream \
   -H 'Content-Type: application/json' \
-  -d '{"message":"Explain the role of an operations copilot."}'
+  -d '{"userId":"user_1","conversationId":"00000000-0000-0000-0000-000000000001","message":"Explain the role of an operations copilot."}'
 ```
+
+Conversation memory endpoints:
+
+```text
+GET /api/chat/conversations?userId=user_1
+GET /api/chat/conversations/{conversationId}?userId=user_1
+```
+
+Chat messages are limited to 500 characters. A conversation is summarized after 20 persisted user and assistant messages; the summary replaces those messages while preserving the conversation subject and ID.
 
 ## Development Commands
 
