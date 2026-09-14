@@ -33,6 +33,7 @@ The backend is the primary focus. The frontend is intentionally small and exists
 - [x] Full local stack verified with PostgreSQL, Ollama, backend, and frontend containers.
 - [x] Real chat request verified through the backend and local Ollama model.
 - [x] PostgreSQL-backed conversation memory with simulated users and generated subjects.
+- [x] Initial end-to-end Ollama eval for natural-language tool selection and grounded response facts.
 
 The current implementation is a bootstrap chat application with PostgreSQL-backed conversation memory and read-only order tools. It stores pending messages, periodically compacts them into an LLM-generated summary, and supports three simulated users. It does not yet have mutation tools, RAG, or a full agent loop.
 
@@ -197,6 +198,7 @@ make logs          Follow container logs
 make build         Build Docker images
 make pull-models   Download configured Ollama models
 make test          Run backend tests in a Java 25 container
+make eval          Run end-to-end evals with the real Ollama model
 make health        Check the backend health endpoint
 ```
 

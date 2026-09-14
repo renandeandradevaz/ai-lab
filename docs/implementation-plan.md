@@ -86,6 +86,7 @@ This is one integrated project, not a sequence of public V1, V2, or V14 releases
 
 ## Workstream 7: Evaluation
 
+- [x] Add an initial end-to-end Ollama eval for natural-language tool selection and response facts.
 - Version evaluation datasets.
 - Add deterministic tool-selection assertions.
 - Test RAG grounding and citations.

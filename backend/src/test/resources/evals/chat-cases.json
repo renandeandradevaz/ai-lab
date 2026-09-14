@@ -1,0 +1,20 @@
+[
+  {
+    "name": "delayed_order_question",
+    "input": "Meu pedido ORD-1003 está atrasado?",
+    "userId": "user_1",
+    "expectedTool": "getOrderStatus",
+    "expectedArguments": {
+      "orderId": "ORD-1003"
+    },
+    "expectedFacts": [
+      "ORD-1003",
+      "DELAYED",
+      "2026-08-25"
+    ],
+    "forbiddenFacts": [
+      "DELIVERED",
+      "ORD-9999"
+    ]
+  }
+]

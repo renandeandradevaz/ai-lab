@@ -2,7 +2,9 @@ package com.ailab.operations;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
+import com.ailab.eval.ToolCallRecorder;
 import com.ailab.operations.delivery.DeliveryNotFoundException;
 import com.ailab.operations.delivery.DeliveryEntity;
 import com.ailab.operations.delivery.DeliveryService;
@@ -22,16 +24,20 @@ public class OrderTools {
 
     private final OrderService orderService;
     private final DeliveryService deliveryService;
+    private final ToolCallRecorder toolCallRecorder;
 
-    public OrderTools(OrderService orderService, DeliveryService deliveryService) {
+    public OrderTools(OrderService orderService, DeliveryService deliveryService,
+            ToolCallRecorder toolCallRecorder) {
         this.orderService = orderService;
         this.deliveryService = deliveryService;
+        this.toolCallRecorder = toolCallRecorder;
     }
 
     @Tool(name = "getOrderStatus", description = "Get the current status and basic details of an order by its order ID.")
     @Transactional(readOnly = true)
     public OrderStatusResult getOrderStatus(
             @ToolParam(description = "Order ID, for example ORD-1001") String orderId) {
+        toolCallRecorder.record("getOrderStatus", Map.of("orderId", String.valueOf(orderId)));
         if (!isOrderId(orderId)) {
             return OrderStatusResult.invalid("Order ID must match the format ORD-1001.");
         }
@@ -63,6 +69,7 @@ public class OrderTools {
     @Transactional(readOnly = true)
     public DeliveryStatusResult getDeliveryStatus(
             @ToolParam(description = "Order ID, for example ORD-1001") String orderId) {
+        toolCallRecorder.record("getDeliveryStatus", Map.of("orderId", String.valueOf(orderId)));
         if (!isOrderId(orderId)) {
             return DeliveryStatusResult.invalid("Order ID must match the format ORD-1001.");
         }
@@ -86,6 +93,7 @@ public class OrderTools {
     @Transactional(readOnly = true)
     public CustomerOrdersResult listCustomerOrders(
             @ToolParam(description = "Customer ID, for example CUST-1001") String customerId) {
+        toolCallRecorder.record("listCustomerOrders", Map.of("customerId", String.valueOf(customerId)));
         if (!isCustomerId(customerId)) {
             return new CustomerOrdersResult(false, customerId, List.of(), "Customer ID must match the format CUST-1001.");
         }
