@@ -1,0 +1,55 @@
+POLITICA DE ENTREGA E ATRASOS
+Loja Aurora - Documento ficticio
+Versao: 1.0
+Data de vigencia: 15 de janeiro de 2026
+
+1. Prazos estimados
+
+O prazo de entrega apresentado no checkout e uma estimativa baseada no endereco, no estoque disponivel e na transportadora selecionada. O prazo comeca a ser contado depois da confirmacao do pagamento e da liberacao do pedido para separacao.
+
+Pedidos para a regiao Metropolitana levam normalmente de 2 a 5 dias uteis depois do envio. Pedidos para outras regioes levam normalmente de 5 a 12 dias uteis depois do envio.
+
+Finais de semana e feriados nao sao considerados dias uteis. O prazo pode ser alterado por eventos climaticos, restricoes de acesso, paralizacoes ou informacoes incorretas no endereco.
+
+2. Rastreamento
+
+Depois que o pedido for enviado, o cliente recebe um codigo de rastreamento. A primeira atualizacao da transportadora pode levar ate 24 horas depois da expedicao.
+
+Os estados mais comuns sao:
+
+- PROCESSING: o pedido esta sendo preparado.
+- SHIPPED: o pedido foi entregue a transportadora.
+- OUT_FOR_DELIVERY: o pedido saiu para entrega.
+- DELIVERED: a entrega foi registrada como concluida.
+- DELIVERY_EXCEPTION: ocorreu um problema que exige acompanhamento.
+
+O status SHIPPED nao significa que o pedido sera entregue no mesmo dia.
+
+3. Pedido atrasado
+
+Um pedido e considerado atrasado quando ultrapassa a data estimada de entrega sem registro de tentativa de entrega ou nova previsao da transportadora.
+
+Quando um pedido estiver atrasado, o atendimento deve:
+
+1. Confirmar o status atual e a data estimada.
+2. Verificar se existe uma excecao de transporte.
+3. Orientar o cliente sobre a abertura de uma investigacao quando o atraso ultrapassar 3 dias uteis.
+4. Registrar o contato e a expectativa do cliente.
+
+A equipe nao deve informar uma nova data como certa quando a transportadora ainda nao forneceu uma previsao.
+
+4. Endereco incorreto
+
+Alteracoes de endereco podem ser solicitadas somente antes do envio e dependem de validacao. Depois do envio, a Loja Aurora nao garante que a transportadora conseguira redirecionar o pacote.
+
+Se o pacote retornar por endereco incorreto, o cliente sera contatado para confirmar os dados. Um novo envio podera gerar custo adicional, exceto quando o erro tiver sido causado pela Loja Aurora.
+
+5. Entrega nao localizada
+
+Se o rastreamento indicar DELIVERED, mas o cliente nao localizar o pacote, ele deve verificar portaria, recepcao, vizinhos e o local seguro indicado no cadastro. Se o pacote continuar desaparecido, a contestacao deve ser aberta em ate 7 dias corridos depois da data registrada como entregue.
+
+6. Extravio
+
+A Loja Aurora pode declarar um pedido como extraviado depois da conclusao da investigacao com a transportadora. Antes dessa confirmacao, o atendimento deve informar que o caso esta em investigacao e nao deve prometer reembolso ou reenvio imediato.
+
+Quando o extravio for confirmado, o cliente podera escolher entre reembolso, quando aplicavel, ou reenvio de um item disponivel. A alternativa escolhida deve ser registrada no atendimento.

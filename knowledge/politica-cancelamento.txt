@@ -1,0 +1,42 @@
+POLITICA DE CANCELAMENTO DE PEDIDOS
+Loja Aurora - Documento ficticio
+Versao: 1.0
+Data de vigencia: 15 de janeiro de 2026
+
+1. Objetivo
+
+Esta politica explica quando um pedido pode ser cancelado e quais procedimentos devem ser seguidos pela Loja Aurora e pelo cliente.
+
+2. Cancelamento antes do envio
+
+O cliente pode solicitar o cancelamento enquanto o pedido estiver nos estados PENDING ou CONFIRMED, desde que a separacao no centro de distribuicao ainda nao tenha comecado.
+
+Quando o cancelamento for aprovado antes do envio, nenhum custo de transporte sera cobrado. Se o pagamento ja tiver sido confirmado, o valor sera encaminhado para reembolso de acordo com a Politica de Reembolso.
+
+O cancelamento nao e considerado concluido apenas porque foi solicitado. O cliente deve receber uma confirmacao com o numero do pedido e o resultado da analise.
+
+3. Pedidos em separacao ou enviados
+
+Pedidos nos estados PROCESSING, SHIPPED ou OUT_FOR_DELIVERY nao podem ser cancelados diretamente pelo fluxo comum de atendimento.
+
+Nesses casos, o cliente pode recusar a entrega ou solicitar uma devolucao depois do recebimento, quando a situacao for elegivel segundo a Politica de Reembolso. A equipe de atendimento nao deve prometer que a transportadora conseguira interromper uma entrega em andamento.
+
+4. Pedidos entregues
+
+Depois da entrega, a solicitacao deve ser tratada como devolucao ou reembolso, e nao como cancelamento. O prazo aplicavel sera contado a partir da data de recebimento do produto.
+
+5. Excecoes
+
+Pedidos contendo produtos personalizados podem ter regras especiais informadas durante a compra. Produtos digitais cujo acesso ja foi iniciado podem nao ser cancelaveis.
+
+Em caso de pagamento duplicado ou cobranca indevida, a equipe deve abrir uma investigacao financeira mesmo que o pedido ja tenha sido enviado.
+
+6. Aprovacao obrigatoria
+
+O cancelamento de um pedido pago exige confirmacao de um operador autorizado antes da execucao. O sistema deve registrar quem solicitou, quem aprovou, quando a decisao foi tomada e qual foi o motivo.
+
+Uma solicitacao de cancelamento pendente expira automaticamente depois de 48 horas se nenhum operador autorizado tomar uma decisao.
+
+7. Informacoes necessarias
+
+Para localizar um pedido, o atendimento deve solicitar o identificador do pedido e confirmar pelo menos um dado adicional do cliente. Nunca devem ser solicitados senha, codigo completo do cartao ou codigo de autenticacao.
