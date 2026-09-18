@@ -34,8 +34,9 @@ The backend is the primary focus. The frontend is intentionally small and exists
 - [x] Real chat request verified through the backend and local Ollama model.
 - [x] PostgreSQL-backed conversation memory with simulated users and generated subjects.
 - [x] Initial end-to-end Ollama eval for natural-language tool selection and grounded response facts.
+- [x] PDF ingestion, deterministic section-aware chunking, Ollama embeddings, pgvector retrieval, and chat citations.
 
-The current implementation is a bootstrap chat application with PostgreSQL-backed conversation memory and read-only order tools. It stores pending messages, periodically compacts them into an LLM-generated summary, and supports three simulated users. It does not yet have mutation tools, RAG, or a full agent loop.
+The current implementation is a bootstrap chat application with PostgreSQL-backed conversation memory, read-only order tools, and a local PDF knowledge base. It stores pending messages, periodically compacts them into an LLM-generated summary, supports three simulated users, and can retrieve policy excerpts from pgvector for grounded answers. It does not yet have mutation tools or a full agent loop.
 
 ### Pending
 
@@ -44,9 +45,9 @@ The current implementation is a bootstrap chat application with PostgreSQL-backe
 - [ ] Add structured output schemas and validation.
 - [ ] Implement operational tools and deterministic fictional business services.
 - [ ] Add tool argument validation, timeout, retry, idempotency, and error policies.
-- [ ] Implement the document ingestion and RAG pipeline.
-- [ ] Add the fictional policy and support knowledge base.
-- [ ] Add pgvector storage, metadata filtering, citations, and source tracking.
+- [x] Implement the document ingestion and RAG pipeline.
+- [x] Add the fictional policy and support knowledge base.
+- [x] Add pgvector storage, page metadata, citations, and source tracking.
 - [ ] Implement the full agent loop and planning state.
 - [ ] Create reusable copilot skills for common operational workflows.
 - [x] Add short-term PostgreSQL-backed conversation memory and summary compaction.
@@ -186,6 +187,15 @@ Conversation memory endpoints:
 GET /api/chat/conversations?userId=user_1
 GET /api/chat/conversations/{conversationId}?userId=user_1
 ```
+
+Ingest a PDF knowledge document:
+
+```bash
+curl -X POST http://localhost:8080/api/knowledge/documents \
+  -F "file=@/path/to/policy.pdf"
+```
+
+The synchronous chat response includes a `sources` array when policy excerpts are retrieved from pgvector.
 
 Chat messages are limited to 500 characters. A conversation is summarized after 20 persisted user and assistant messages; the summary replaces those messages while preserving the conversation subject and ID.
 

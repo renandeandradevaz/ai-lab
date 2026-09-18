@@ -47,13 +47,22 @@ services:
     environment:
       OLLAMA_BASE_URL: http://ollama:11434
       LLM_CHAT_MODEL: ${LLM_CHAT_MODEL:-llama3.2:3b}
+      LLM_EMBEDDING_MODEL: ${LLM_EMBEDDING_MODEL:-nomic-embed-text}
       LLM_TEMPERATURE: ${LLM_TEMPERATURE:-0.2}
+      RAG_TOP_K: ${RAG_TOP_K:-5}
+      RAG_MINIMUM_SIMILARITY: ${RAG_MINIMUM_SIMILARITY:-0.25}
+      RAG_CHUNK_TARGET_WORDS: ${RAG_CHUNK_TARGET_WORDS:-220}
+      RAG_CHUNK_OVERLAP_WORDS: ${RAG_CHUNK_OVERLAP_WORDS:-35}
+      KNOWLEDGE_MAX_FILE_SIZE_MB: ${KNOWLEDGE_MAX_FILE_SIZE_MB:-10}
+      KNOWLEDGE_STORAGE_PATH: /app/knowledge-documents
       SERVER_PORT: ${SERVER_PORT:-8080}
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB:-ai_lab}
       POSTGRES_USER: ${POSTGRES_USER:-ai_lab}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ai_lab}
     ports:
       - "8080:8080"
+    volumes:
+      - knowledge-data:/app/knowledge-documents
     depends_on:
       postgres:
         condition: service_healthy
@@ -73,3 +82,4 @@ services:
 volumes:
   postgres-data:
   ollama-data:
+  knowledge-data:

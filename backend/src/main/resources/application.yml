@@ -20,6 +20,14 @@ spring:
         options:
           model: ${LLM_CHAT_MODEL:llama3.2:3b}
           temperature: ${LLM_TEMPERATURE:0.2}
+      embedding:
+        options:
+          model: ${LLM_EMBEDDING_MODEL:nomic-embed-text}
+
+  servlet:
+    multipart:
+      max-file-size: ${KNOWLEDGE_MAX_FILE_SIZE_MB:10}MB
+      max-request-size: ${KNOWLEDGE_MAX_FILE_SIZE_MB:10}MB
 
 management:
   endpoints:
@@ -33,3 +41,11 @@ management:
 
 server:
   port: ${SERVER_PORT:8080}
+
+ailab:
+  knowledge:
+    storage-path: ${KNOWLEDGE_STORAGE_PATH:./knowledge-documents}
+    top-k: ${RAG_TOP_K:5}
+    minimum-similarity: ${RAG_MINIMUM_SIMILARITY:0.25}
+    chunk-target-words: ${RAG_CHUNK_TARGET_WORDS:220}
+    chunk-overlap-words: ${RAG_CHUNK_OVERLAP_WORDS:35}

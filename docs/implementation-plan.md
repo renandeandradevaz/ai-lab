@@ -47,12 +47,12 @@ This is one integrated project, not a sequence of public V1, V2, or V14 releases
 
 ## Workstream 3: RAG
 
-- Add refund, cancellation, shipping, warranty, FAQ, and support documents in English.
-- Implement loading, chunking, embedding, and persistence.
-- Enable pgvector and metadata filtering.
-- Implement top-K retrieval.
-- Add citations and source tracking.
-- Handle insufficient evidence explicitly.
+- [x] Add refund, cancellation, shipping, warranty, FAQ, and support documents in English.
+- [x] Implement PDF loading, section-aware chunking, embedding, and persistence.
+- [x] Enable pgvector storage and document metadata.
+- [x] Implement top-K retrieval with a minimum similarity threshold.
+- [x] Add citations and source tracking to synchronous chat responses.
+- [x] Handle insufficient evidence explicitly in the retrieval context.
 
 ## Workstream 4: Agent and Memory
 

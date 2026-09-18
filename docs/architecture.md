@@ -64,22 +64,25 @@ Future providers must be selectable through configuration and must not require c
 
 - `POST /api/chat`: synchronous chat response.
 - `POST /api/chat/stream`: text event stream response.
+- `POST /api/knowledge/documents`: PDF knowledge ingestion.
+- `GET /api/knowledge/documents`: knowledge document listing.
+- `DELETE /api/knowledge/documents/{id}`: knowledge document removal.
 - `GET /actuator/health`: application health.
 
 The frontend uses the synchronous endpoint at this stage. Streaming integration remains a frontend enhancement.
 
 ## Data and Knowledge Flow
 
-The planned RAG flow is:
+The current RAG flow is:
 
 ```text
 Knowledge document
   -> Chunking
   -> Embedding model
-  -> PostgreSQL/pgvector
+  -> PostgreSQL/pgvector with page and section metadata
   -> Similarity search and metadata filtering
   -> Retrieved context and source references
-  -> Agent response
+  -> grounded chat response with source references
 ```
 
 Operational data will be provided by deterministic fictional services and will be kept distinct from retrieved policy content.

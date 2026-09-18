@@ -14,6 +14,12 @@ The project uses environment variables for local configuration. Copy `.env.examp
 | `LLM_EMBEDDING_MODEL` | `nomic-embed-text` | Ollama initializer | Ollama model reserved for embeddings. |
 | `OLLAMA_HOST_PORT` | `11435` | Docker Compose | Host port mapped to the Ollama container port `11434`. |
 | `LLM_TEMPERATURE` | `0.2` | Backend | Chat model temperature. |
+| `RAG_TOP_K` | `5` | Backend | Maximum number of knowledge chunks retrieved per question. |
+| `RAG_MINIMUM_SIMILARITY` | `0.25` | Backend | Minimum cosine similarity for a retrieved chunk. |
+| `RAG_CHUNK_TARGET_WORDS` | `220` | Backend | Target size for section-aware PDF chunks. |
+| `RAG_CHUNK_OVERLAP_WORDS` | `35` | Backend | Overlap used when a paragraph exceeds the chunk target. |
+| `KNOWLEDGE_MAX_FILE_SIZE_MB` | `10` | Backend | Maximum PDF upload size. |
+| `KNOWLEDGE_STORAGE_PATH` | `./knowledge-documents` | Backend | Directory used to persist uploaded PDFs. |
 | `SERVER_PORT` | `8080` | Backend | Backend HTTP port inside and outside the container. |
 | `VITE_API_BASE_URL` | `http://localhost:8080` | Frontend build | Backend URL embedded in the frontend production bundle. |
 
@@ -37,6 +43,17 @@ LLM_EMBEDDING_MODEL=nomic-embed-text
 ```
 
 `LLM_PROVIDER` is documented as a future configuration value and is not consumed by the current bootstrap implementation yet.
+
+## Knowledge API
+
+The local knowledge API accepts text-based PDFs and processes them synchronously:
+
+- `POST /api/knowledge/documents` with multipart field `file` ingests a PDF.
+- `GET /api/knowledge/documents` lists ingested documents and processing status.
+- `GET /api/knowledge/documents/{id}` returns one document.
+- `DELETE /api/knowledge/documents/{id}` removes the document, stored file, chunks, and embeddings.
+
+The backend extracts pages with PDFBox, creates section-aware chunks, generates embeddings with the configured Ollama embedding model, and stores 768-dimensional vectors in PostgreSQL/pgvector. Synchronous chat responses include the retrieved filename, page, section, and similarity as `sources`.
 
 ## Secret handling
 

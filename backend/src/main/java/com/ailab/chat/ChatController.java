@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import com.ailab.conversation.ConversationMemoryService;
+import com.ailab.knowledge.KnowledgeSource;
 
 @RestController
 @RequestMapping("/api/chat")
@@ -31,7 +32,8 @@ public class ChatController {
     public ChatResponse chat(@Valid @RequestBody ChatRequest request) {
         ConversationChatService.ChatResult result = chatService.chat(
                 request.userId(), request.conversationId(), request.message());
-        return new ChatResponse(result.conversationId(), result.subject(), result.summary(), result.message());
+        return new ChatResponse(result.conversationId(), result.subject(), result.summary(), result.message(),
+                result.sources());
     }
 
     @PostMapping(value = "/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
@@ -57,6 +59,7 @@ public class ChatController {
             @Size(max = 500, message = "Message must not exceed 500 characters") String message) {
     }
 
-    public record ChatResponse(String conversationId, String subject, String summary, String message) {
+    public record ChatResponse(String conversationId, String subject, String summary, String message,
+            java.util.List<KnowledgeSource> sources) {
     }
 }
